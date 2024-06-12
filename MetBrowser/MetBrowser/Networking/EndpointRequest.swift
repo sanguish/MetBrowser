@@ -35,6 +35,13 @@ final class EndpointRequest {
             let rawJSONData = handleResponse(data: JSONData, response: response)
             if let rawJSONData {
                 return try JSONDecoder().decode(T.self, from: rawJSONData)
+            } else {
+                switch endpointRequest {
+                case .object(let objectID):
+                    print("missing objectID - \(objectID)")
+                case .query:
+                    print("query")
+                }
             }
         } catch let error as NSError {
             throw error

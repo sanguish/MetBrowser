@@ -26,9 +26,9 @@ enum EndpointRequestType {
         case .query(let queryString):
             urlComponents.path = "/public/collection/v1/search"
             queryItemsArray.append(URLQueryItem(name: "q", value: queryString))
+            queryItemsArray.append(URLQueryItem(name: "hasImages", value: "true"))
         case .object(let objectID):
             urlComponents.path = "/public/collection/v1/objects/\(objectID)"
-
         }
         urlComponents.queryItems = queryItemsArray
         var request = URLRequest(url: urlComponents.url!)
