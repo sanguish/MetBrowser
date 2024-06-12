@@ -11,22 +11,31 @@ import Foundation
 class MainViewModel {
     var metObjects: [MetObject] = []
     var status: Status
+    var count: Int = 0
+    var count2: Int = 0
 
     @MainActor
     func performQuery(queryString: String) {
         Task {
             let metObjectsCollection = await self.getQueries(queryString: queryString)
-            if let metObjectsCollection {
+            if let metObjectsCollection,
+               metObjectsCollection.total > 0 {
+                count2 = metObjectsCollection.total
                 var index = 0
+                count = 0
                 for objectID in metObjectsCollection.objectIDs {
                     let metObject = await getObject(objectID: objectID)
                     if let metObject,
                        metObject.classification != "" {
                         metObjects.append(metObject)
                         index = index + 1
+                        count = count + 1
                         if index > 79 { break }
                     }
                 }
+            }
+            if metObjectsCollection?.total == 0 {
+                status = .empty
             }
         }
     }
@@ -38,6 +47,7 @@ class MainViewModel {
                                                                                   endpointRequest: requestType)
             return queryObjects
         } catch let error as NSError {
+            status = .error
             debugPrint("Provide proper user feedback \(error.localizedDescription)")
         }
         return nil
@@ -50,13 +60,12 @@ class MainViewModel {
                                                                                   endpointRequest: requestType)
             return queryObjects
         } catch let error as NSError {
+            debugPrint("objectid = \(objectID)")
             debugPrint("Provide proper user feedback \(error.localizedDescription)")
         }
         return nil
     }
 
-
-    // this is called when the field gets a return
     @MainActor
     func updateViews(queryString: String) {
         metObjects = []
