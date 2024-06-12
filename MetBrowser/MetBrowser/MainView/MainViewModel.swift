@@ -15,16 +15,14 @@ class MainViewModel {
     @MainActor
     func performQuery(queryString: String) {
         Task {
-            let metObjectsCollection = await getQueries(queryString: queryString)
+            let metObjectsCollection = await self.getQueries(queryString: queryString)
             if let metObjectsCollection {
-                var i = 0
-                for objectID in metObjectsCollection.objectIDs {
+                let subArray = Array(metObjectsCollection.objectIDs.prefix(80))
+                for objectID in subArray {
                     let metObject = await getObject(objectID: objectID)
                     if let metObject {
                         metObjects.append(metObject)
                     }
-                    i = i + 1
-                    if i > 80 { break }
                 }
             }
         }

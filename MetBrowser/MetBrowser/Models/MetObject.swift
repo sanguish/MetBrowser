@@ -65,20 +65,12 @@ class MetObject: Codable, Identifiable {
 }
 
 extension MetObject {
-    var primaryImageURL: URL {
-        if let theURL = URL(string: primaryImage) {
-            return theURL
-        } else {
-            fatalError(primaryImage)
-        }
+    var primaryImageURL: URL? {
+        URL(string: primaryImage)
     }
 
-    var primaryImageSmallURL: URL {
-        if let theURL = URL(string: primaryImageSmall) {
-            return theURL
-        } else {
-            fatalError(primaryImageSmall)
-        }
+    var primaryImageSmallURL: URL? {
+        URL(string: primaryImageSmall)
     }
 
 }
