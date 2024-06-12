@@ -4,14 +4,10 @@ struct MainView: View {
     var viewModel = MainViewModel()
     @State var searchString = ""
 
-    var numberOfRows: Int {
-        viewModel.metObjects.count
-    }
-
     var body: some View {
         GeometryReader { geometryProxy in
             VStack {
-                Text("\(numberOfRows)")
+                Text("\(viewModel.count) - \(viewModel.count2) - \(geometryProxy.size.width)")
                 ScrollView(.vertical) {
                     Spacer()
                         .frame(width: geometryProxy.size.width - 16, height: 20)
@@ -19,16 +15,7 @@ struct MainView: View {
 
                     VStack {
                         ForEach(viewModel.metObjects) { metObject in
-                            VStack {
-                                showImage(metObject: metObject)
-                                HStack {
-                                    Text("Title :")
-                                        .font(.title)
-                                    Text(metObject.title)
-                                        .font(.title)
-                                }
-                                Text(metObject.classification)
-                            }
+                            displayObject(metObject: metObject)
                         }
                         .scrollIndicators(.hidden)
                     }
@@ -46,18 +33,24 @@ struct MainView: View {
         }
     }
 
-    func primaryImageSmallURLIsNotNil(_ URL: URL?) -> Bool {
-        return URL != nil
+    @ViewBuilder
+    func displayObject(metObject: MetObject) -> some View {
+        VStack {
+            showImage(metObject: metObject)
+            Text(metObject.title)
+                .font(.headline)
+            Text("Classification: \(metObject.classification)")
+        }
+
     }
 
     @ViewBuilder
     func showImage(metObject: MetObject) -> some View {
-        if primaryImageSmallURLIsNotNil(metObject.primaryImageSmallURL) {
-            AsyncImage(url: metObject.primaryImageSmallURL) { phase in
+            AsyncImage(url: metObject.primaryImageSmall) { phase in
                 if let image = phase.image {
                     image
                         .resizable()
-                        .aspectRatio(1, contentMode: .fit)
+                        .aspectRatio(contentMode: .fit)
                         .frame(height: 200)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .clipped()
@@ -65,8 +58,9 @@ struct MainView: View {
                         .padding(16)
 
                 } else if phase.error != nil {
-                    Image(.missing)
+                    Image(systemName: "exclamationmark.triangle.fill")
                         .resizable()
+                        .tint(Color.gray)
                         .frame(width: 200, height: 200)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .clipped()
@@ -79,16 +73,5 @@ struct MainView: View {
                         .padding(16)
                 }
             }
-
-        } else {
-            Image(.missing)
-                .resizable()
-                .frame(width: 200, height: 200)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .clipped()
-                .shadow(radius: 8)
-                .padding(16)
-
-        }
     }
 }
