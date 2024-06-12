@@ -15,6 +15,9 @@
 		C8E0D35C2C1968F000AC4BD0 /* EndpointRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3592C1968F000AC4BD0 /* EndpointRequestType.swift */; };
 		C8E0D35F2C19697300AC4BD0 /* MetObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D35E2C19697300AC4BD0 /* MetObject.swift */; };
 		C8E0D3612C19697A00AC4BD0 /* MetObjectsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3602C19697A00AC4BD0 /* MetObjectsCollection.swift */; };
+		C8E0D3652C196B9C00AC4BD0 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3642C196B9C00AC4BD0 /* Status.swift */; };
+		C8E0D3692C196BB900AC4BD0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3662C196BB900AC4BD0 /* MainView.swift */; };
+		C8E0D36A2C196BB900AC4BD0 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3672C196BB900AC4BD0 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,10 @@
 		C8E0D3592C1968F000AC4BD0 /* EndpointRequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointRequestType.swift; sourceTree = "<group>"; };
 		C8E0D35E2C19697300AC4BD0 /* MetObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetObject.swift; sourceTree = "<group>"; };
 		C8E0D3602C19697A00AC4BD0 /* MetObjectsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetObjectsCollection.swift; sourceTree = "<group>"; };
+		C8E0D3622C196B5800AC4BD0 /* instructions.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = instructions.md; sourceTree = "<group>"; };
+		C8E0D3642C196B9C00AC4BD0 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		C8E0D3662C196BB900AC4BD0 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		C8E0D3672C196BB900AC4BD0 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +70,8 @@
 				C8E0D35A2C1968F000AC4BD0 /* Networking */,
 				C8E0D35D2C19696300AC4BD0 /* Models */,
 				C8E0D34A2C19680B00AC4BD0 /* ContentView.swift */,
+				C8E0D3682C196BB900AC4BD0 /* MainView */,
+				C8E0D3632C196B7F00AC4BD0 /* Utilities */,
 				C8E0D3572C19688A00AC4BD0 /* Necessary Files */,
 			);
 			path = MetBrowser;
@@ -83,6 +92,7 @@
 				C8E0D3512C19680C00AC4BD0 /* MetBrowser.entitlements */,
 				C8E0D34C2C19680C00AC4BD0 /* Assets.xcassets */,
 				C8E0D3482C19680B00AC4BD0 /* MetBrowserApp.swift */,
+				C8E0D3622C196B5800AC4BD0 /* instructions.md */,
 			);
 			name = "Necessary Files";
 			sourceTree = "<group>";
@@ -103,6 +113,23 @@
 				C8E0D3602C19697A00AC4BD0 /* MetObjectsCollection.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C8E0D3632C196B7F00AC4BD0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C8E0D3642C196B9C00AC4BD0 /* Status.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C8E0D3682C196BB900AC4BD0 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				C8E0D3662C196BB900AC4BD0 /* MainView.swift */,
+				C8E0D3672C196BB900AC4BD0 /* MainViewModel.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,11 +203,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8E0D35C2C1968F000AC4BD0 /* EndpointRequestType.swift in Sources */,
+				C8E0D3692C196BB900AC4BD0 /* MainView.swift in Sources */,
 				C8E0D35B2C1968F000AC4BD0 /* EndpointRequest.swift in Sources */,
+				C8E0D3652C196B9C00AC4BD0 /* Status.swift in Sources */,
 				C8E0D34B2C19680B00AC4BD0 /* ContentView.swift in Sources */,
 				C8E0D35F2C19697300AC4BD0 /* MetObject.swift in Sources */,
 				C8E0D3492C19680B00AC4BD0 /* MetBrowserApp.swift in Sources */,
 				C8E0D3612C19697A00AC4BD0 /* MetObjectsCollection.swift in Sources */,
+				C8E0D36A2C196BB900AC4BD0 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
