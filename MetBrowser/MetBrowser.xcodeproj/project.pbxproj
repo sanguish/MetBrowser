@@ -52,11 +52,8 @@
 		C8E0D3472C19680B00AC4BD0 /* MetBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				C8E0D3482C19680B00AC4BD0 /* MetBrowserApp.swift */,
 				C8E0D34A2C19680B00AC4BD0 /* ContentView.swift */,
-				C8E0D34C2C19680C00AC4BD0 /* Assets.xcassets */,
-				C8E0D3512C19680C00AC4BD0 /* MetBrowser.entitlements */,
-				C8E0D34E2C19680C00AC4BD0 /* Preview Content */,
+				C8E0D3572C19688A00AC4BD0 /* Necessary Files */,
 			);
 			path = MetBrowser;
 			sourceTree = "<group>";
@@ -67,6 +64,17 @@
 				C8E0D34F2C19680C00AC4BD0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C8E0D3572C19688A00AC4BD0 /* Necessary Files */ = {
+			isa = PBXGroup;
+			children = (
+				C8E0D34E2C19680C00AC4BD0 /* Preview Content */,
+				C8E0D3512C19680C00AC4BD0 /* MetBrowser.entitlements */,
+				C8E0D34C2C19680C00AC4BD0 /* Assets.xcassets */,
+				C8E0D3482C19680B00AC4BD0 /* MetBrowserApp.swift */,
+			);
+			name = "Necessary Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
