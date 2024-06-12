@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@MainActor
 final class EndpointRequest {
 
     /// Downloads the provided ``EndpointRequestType`` and decodes it as specified by `T`
