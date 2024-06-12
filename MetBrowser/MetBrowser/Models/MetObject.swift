@@ -13,7 +13,8 @@ class MetObject: Codable, Identifiable {
     let isHighlight: Bool
     let accessionNumber, accessionYear: String
     let isPublicDomain: Bool
-    let primaryImage, primaryImageSmall: String
+    let primaryImage: String
+    let primaryImageSmall: URL
     let department, objectName, title, culture: String
     let period, dynasty, reign, portfolio: String
     let artistRole, artistPrefix, artistDisplayName, artistDisplayBio: String
@@ -64,15 +65,4 @@ class MetObject: Codable, Identifiable {
         case metadataDate
         case repository
     }
-}
-
-extension MetObject {
-    var primaryImageURL: URL? {
-        URL(string: primaryImage)
-    }
-
-    var primaryImageSmallURL: URL? {
-        URL(string: primaryImageSmall)
-    }
-
 }
