@@ -13,6 +13,8 @@
 		C8E0D3502C19680C00AC4BD0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8E0D34F2C19680C00AC4BD0 /* Preview Assets.xcassets */; };
 		C8E0D35B2C1968F000AC4BD0 /* EndpointRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3582C1968F000AC4BD0 /* EndpointRequest.swift */; };
 		C8E0D35C2C1968F000AC4BD0 /* EndpointRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3592C1968F000AC4BD0 /* EndpointRequestType.swift */; };
+		C8E0D35F2C19697300AC4BD0 /* MetObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D35E2C19697300AC4BD0 /* MetObject.swift */; };
+		C8E0D3612C19697A00AC4BD0 /* MetObjectsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3602C19697A00AC4BD0 /* MetObjectsCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		C8E0D3512C19680C00AC4BD0 /* MetBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetBrowser.entitlements; sourceTree = "<group>"; };
 		C8E0D3582C1968F000AC4BD0 /* EndpointRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointRequest.swift; sourceTree = "<group>"; };
 		C8E0D3592C1968F000AC4BD0 /* EndpointRequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointRequestType.swift; sourceTree = "<group>"; };
+		C8E0D35E2C19697300AC4BD0 /* MetObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetObject.swift; sourceTree = "<group>"; };
+		C8E0D3602C19697A00AC4BD0 /* MetObjectsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetObjectsCollection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				C8E0D35A2C1968F000AC4BD0 /* Networking */,
+				C8E0D35D2C19696300AC4BD0 /* Models */,
 				C8E0D34A2C19680B00AC4BD0 /* ContentView.swift */,
 				C8E0D3572C19688A00AC4BD0 /* Necessary Files */,
 			);
@@ -89,6 +94,15 @@
 				C8E0D3592C1968F000AC4BD0 /* EndpointRequestType.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		C8E0D35D2C19696300AC4BD0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C8E0D35E2C19697300AC4BD0 /* MetObject.swift */,
+				C8E0D3602C19697A00AC4BD0 /* MetObjectsCollection.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,7 +178,9 @@
 				C8E0D35C2C1968F000AC4BD0 /* EndpointRequestType.swift in Sources */,
 				C8E0D35B2C1968F000AC4BD0 /* EndpointRequest.swift in Sources */,
 				C8E0D34B2C19680B00AC4BD0 /* ContentView.swift in Sources */,
+				C8E0D35F2C19697300AC4BD0 /* MetObject.swift in Sources */,
 				C8E0D3492C19680B00AC4BD0 /* MetBrowserApp.swift in Sources */,
+				C8E0D3612C19697A00AC4BD0 /* MetObjectsCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
