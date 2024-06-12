@@ -3,11 +3,15 @@ import SwiftUI
 struct MainView: View {
     var viewModel = MainViewModel()
     @State var searchString = ""
+    @State var sortOrder: Int = 1
 
+    init() {
+        viewModel.sortOrder = sortOrder
+        
+    }
     var body: some View {
         GeometryReader { geometryProxy in
             VStack {
-                Text("\(viewModel.count) - \(viewModel.count2) - \(geometryProxy.size.width)")
                 ScrollView(.vertical) {
                     Spacer()
                         .frame(width: geometryProxy.size.width - 16, height: 20)
@@ -23,15 +27,33 @@ struct MainView: View {
                 .frame(width: geometryProxy.size.width)
             }
 
-            .searchable(text: $searchString, prompt: "Search for Artifact") {
+            .toolbar {
+                ToolbarItemGroup(placement: .secondaryAction) {
+                    HStack {
+                        Text("Sort: ")
+                        Picker("Sort Order", selection: self.$sortOrder) {
+                            Text("Decending").tag(1)
+                            Text("Ascending").tag(2)
+                        }
+                    }
+                    .searchable(text: $searchString,
+                                placement: .toolbar,
+                                prompt: "Search for Artifact") {
+                    }
+
+                }
+
             }
             .onSubmit(of: .search) {
-                print(searchString)
+                print("new searchstring = \(searchString)")
                 viewModel.updateViews(queryString: searchString)
             }
             .navigationTitle("Met Browser")
         }
     }
+
+    func placeOrder() {}
+    func adjustOrder() {}
 
     @ViewBuilder
     func displayObject(metObject: MetObject) -> some View {
