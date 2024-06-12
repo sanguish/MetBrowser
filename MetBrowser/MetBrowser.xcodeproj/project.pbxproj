@@ -123,8 +123,8 @@
 		C8E0D3682C196BB900AC4BD0 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				C8E0D3662C196BB900AC4BD0 /* MainView.swift */,
 				C8E0D3672C196BB900AC4BD0 /* MainViewModel.swift */,
+				C8E0D3662C196BB900AC4BD0 /* MainView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -143,6 +143,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C8F5D7C52C197637005C960D /* PBXTargetDependency */,
 			);
 			name = MetBrowser;
 			productName = MetBrowser;
@@ -173,6 +174,9 @@
 				Base,
 			);
 			mainGroup = C8E0D33C2C19680B00AC4BD0;
+			packageReferences = (
+				C8F5D7C32C197612005C960D /* XCRemoteSwiftPackageReference "SwiftLint" */,
+			);
 			productRefGroup = C8E0D3462C19680B00AC4BD0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -211,6 +215,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C8F5D7C52C197637005C960D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = C8F5D7C42C197637005C960D /* SwiftLintBuildToolPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C8E0D3522C19680C00AC4BD0 /* Debug */ = {
@@ -407,6 +418,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C8F5D7C32C197612005C960D /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C8F5D7C42C197637005C960D /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8F5D7C32C197612005C960D /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C8E0D33D2C19680B00AC4BD0 /* Project object */;
 }

@@ -21,12 +21,14 @@ class MetObject: Codable, Identifiable {
     let artistEndDate, artistGender: String
     let objectDate: String
     let objectBeginDate, objectEndDate: Int
+    let classification: String
     let medium, creditLine, city, state: String
     let country, region, metadataDate, repository: String
     
     enum CodingKeys: String, CodingKey {
         case id = "objectID"
         case isHighlight
+        case classification
         case accessionNumber
         case accessionYear
         case isPublicDomain

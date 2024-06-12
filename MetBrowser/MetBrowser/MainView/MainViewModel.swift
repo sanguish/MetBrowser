@@ -17,11 +17,14 @@ class MainViewModel {
         Task {
             let metObjectsCollection = await self.getQueries(queryString: queryString)
             if let metObjectsCollection {
-                let subArray = Array(metObjectsCollection.objectIDs.prefix(80))
-                for objectID in subArray {
+                var index = 0
+                for objectID in metObjectsCollection.objectIDs {
                     let metObject = await getObject(objectID: objectID)
-                    if let metObject {
+                    if let metObject,
+                       metObject.classification != "" {
                         metObjects.append(metObject)
+                        index = index + 1
+                        if index > 79 { break }
                     }
                 }
             }
