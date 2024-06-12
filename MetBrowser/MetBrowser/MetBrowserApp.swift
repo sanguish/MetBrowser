@@ -12,6 +12,7 @@ struct MetBrowserApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .frame(minWidth: 400.0, minHeight: 400.0)
         }
     }
 }
