@@ -12,8 +12,8 @@
 		C8E0D3502C19680C00AC4BD0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8E0D34F2C19680C00AC4BD0 /* Preview Assets.xcassets */; };
 		C8E0D35B2C1968F000AC4BD0 /* EndpointRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3582C1968F000AC4BD0 /* EndpointRequest.swift */; };
 		C8E0D35C2C1968F000AC4BD0 /* EndpointRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3592C1968F000AC4BD0 /* EndpointRequestType.swift */; };
-		C8E0D35F2C19697300AC4BD0 /* MetObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D35E2C19697300AC4BD0 /* MetObject.swift */; };
-		C8E0D3612C19697A00AC4BD0 /* MetObjectsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3602C19697A00AC4BD0 /* MetObjectsCollection.swift */; };
+		C8E0D35F2C19697300AC4BD0 /* MetArtifact.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D35E2C19697300AC4BD0 /* MetArtifact.swift */; };
+		C8E0D3612C19697A00AC4BD0 /* MetArtifactsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3602C19697A00AC4BD0 /* MetArtifactsCollection.swift */; };
 		C8E0D3652C196B9C00AC4BD0 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3642C196B9C00AC4BD0 /* Status.swift */; };
 		C8E0D3692C196BB900AC4BD0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3662C196BB900AC4BD0 /* MainView.swift */; };
 		C8E0D36A2C196BB900AC4BD0 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3672C196BB900AC4BD0 /* MainViewModel.swift */; };
@@ -22,8 +22,8 @@
 		C8F5D7D92C1AD9FD005C960D /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3672C196BB900AC4BD0 /* MainViewModel.swift */; };
 		C8F5D7DA2C1ADA18005C960D /* EndpointRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3582C1968F000AC4BD0 /* EndpointRequest.swift */; };
 		C8F5D7DB2C1ADA18005C960D /* EndpointRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3592C1968F000AC4BD0 /* EndpointRequestType.swift */; };
-		C8F5D7DC2C1ADA1A005C960D /* MetObjectsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3602C19697A00AC4BD0 /* MetObjectsCollection.swift */; };
-		C8F5D7DD2C1ADA1A005C960D /* MetObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D35E2C19697300AC4BD0 /* MetObject.swift */; };
+		C8F5D7DC2C1ADA1A005C960D /* MetArtifactsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3602C19697A00AC4BD0 /* MetArtifactsCollection.swift */; };
+		C8F5D7DD2C1ADA1A005C960D /* MetArtifact.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D35E2C19697300AC4BD0 /* MetArtifact.swift */; };
 		C8F5D7DE2C1ADA22005C960D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3662C196BB900AC4BD0 /* MainView.swift */; };
 		C8F5D7DF2C1ADA26005C960D /* Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F5D7C62C1AB53E005C960D /* Sorting.swift */; };
 		C8F5D7E02C1ADA26005C960D /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3642C196B9C00AC4BD0 /* Status.swift */; };
@@ -48,8 +48,8 @@
 		C8E0D3512C19680C00AC4BD0 /* MetBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetBrowser.entitlements; sourceTree = "<group>"; };
 		C8E0D3582C1968F000AC4BD0 /* EndpointRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointRequest.swift; sourceTree = "<group>"; };
 		C8E0D3592C1968F000AC4BD0 /* EndpointRequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointRequestType.swift; sourceTree = "<group>"; };
-		C8E0D35E2C19697300AC4BD0 /* MetObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetObject.swift; sourceTree = "<group>"; };
-		C8E0D3602C19697A00AC4BD0 /* MetObjectsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetObjectsCollection.swift; sourceTree = "<group>"; };
+		C8E0D35E2C19697300AC4BD0 /* MetArtifact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetArtifact.swift; sourceTree = "<group>"; };
+		C8E0D3602C19697A00AC4BD0 /* MetArtifactsCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetArtifactsCollection.swift; sourceTree = "<group>"; };
 		C8E0D3622C196B5800AC4BD0 /* instructions.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = instructions.md; sourceTree = "<group>"; };
 		C8E0D3642C196B9C00AC4BD0 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		C8E0D3662C196BB900AC4BD0 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -139,8 +139,8 @@
 		C8E0D35D2C19696300AC4BD0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C8E0D35E2C19697300AC4BD0 /* MetObject.swift */,
-				C8E0D3602C19697A00AC4BD0 /* MetObjectsCollection.swift */,
+				C8E0D35E2C19697300AC4BD0 /* MetArtifact.swift */,
+				C8E0D3602C19697A00AC4BD0 /* MetArtifactsCollection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -166,17 +166,9 @@
 		C8F5D7C82C1AC0F9005C960D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C8F5D7C92C1AC104005C960D /* Utilities */,
 				C8E0D3682C196BB900AC4BD0 /* MainView */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		C8F5D7C92C1AC104005C960D /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		C8F5D7D12C1AD93E005C960D /* MetBrowserTests */ = {
@@ -295,10 +287,10 @@
 				C8E0D3692C196BB900AC4BD0 /* MainView.swift in Sources */,
 				C8E0D35B2C1968F000AC4BD0 /* EndpointRequest.swift in Sources */,
 				C8E0D3652C196B9C00AC4BD0 /* Status.swift in Sources */,
-				C8E0D35F2C19697300AC4BD0 /* MetObject.swift in Sources */,
+				C8E0D35F2C19697300AC4BD0 /* MetArtifact.swift in Sources */,
 				C8E0D3492C19680B00AC4BD0 /* MetBrowserApp.swift in Sources */,
 				C8F5D7C72C1AB53E005C960D /* Sorting.swift in Sources */,
-				C8E0D3612C19697A00AC4BD0 /* MetObjectsCollection.swift in Sources */,
+				C8E0D3612C19697A00AC4BD0 /* MetArtifactsCollection.swift in Sources */,
 				C8E0D36A2C196BB900AC4BD0 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,8 +307,8 @@
 				C8F5D7DB2C1ADA18005C960D /* EndpointRequestType.swift in Sources */,
 				C8F5D7D92C1AD9FD005C960D /* MainViewModel.swift in Sources */,
 				C8F5D7E12C1ADA2E005C960D /* MetBrowserApp.swift in Sources */,
-				C8F5D7DC2C1ADA1A005C960D /* MetObjectsCollection.swift in Sources */,
-				C8F5D7DD2C1ADA1A005C960D /* MetObject.swift in Sources */,
+				C8F5D7DC2C1ADA1A005C960D /* MetArtifactsCollection.swift in Sources */,
+				C8F5D7DD2C1ADA1A005C960D /* MetArtifact.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

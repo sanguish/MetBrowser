@@ -1,5 +1,5 @@
 //
-//  MetObject.swift
+//  MetArtifact.swift
 //  MetBrowser
 //
 //  Created by Scott Anguish on 6/11/24.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-/// The `MetObject` contains a selection of data retrieved from the ``EndpointRequestType.object(let objectID)``.
-class MetObject: Codable, Identifiable {
+/// The `MetArtifact` contains a selection of data retrieved from the ``EndpointRequestType.object(let objectID)``.
+class MetArtifact: Codable, Identifiable {
     let id: Int
     let isHighlight: Bool
     let accessionNumber, accessionYear: String

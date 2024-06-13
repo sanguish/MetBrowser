@@ -1,15 +1,16 @@
 import SwiftUI
 
-private struct MetObjectView: View {
-    private var metObject: MetObject
+/// The `MetArtifactView` provides the view that displays an individiual artifact.
+private struct MetArtifactView: View {
+    private var metArtifact: MetArtifact
 
-    init(metObject: MetObject) {
-        self.metObject = metObject
+    init(metObject: MetArtifact) {
+        self.metArtifact = metObject
     }
 
     var body: some View {
         VStack {
-            AsyncImage(url: metObject.primaryImageSmall) { phase in
+            AsyncImage(url: metArtifact.primaryImageSmall) { phase in
                 if let image = phase.image {
                     image
                         .resizable()
@@ -36,10 +37,10 @@ private struct MetObjectView: View {
                         .padding(16)
                 }
             }
-            Text(metObject.title)
+            Text(metArtifact.title)
                 .font(.headline)
-            Text("\(metObject.classification)")
-            Text("Circa: \(metObject.objectBeginDate)")
+            Text("\(metArtifact.classification)")
+            Text("Circa: \(metArtifact.objectBeginDate)")
         }
     }
 }
@@ -60,8 +61,8 @@ struct MetDataView: View {
                         .offset(y: -20)
 
                     VStack {
-                        ForEach(viewModel.metObjects) { metObject in
-                            MetObjectView(metObject: metObject)
+                        ForEach(viewModel.metArtifacts) { metObject in
+                            MetArtifactView(metObject: metObject)
                         }
                         .scrollIndicators(.hidden)
                     }
@@ -77,6 +78,7 @@ struct MainView: View {
     var viewModel = MainViewModel()
     @State var searchString = ""
     @State var sortOrder: Sorting = .forward
+
     var disabled: Bool {
         switch viewModel.status {
         case .loading:
