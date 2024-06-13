@@ -15,7 +15,7 @@ Currently there is no error handling. There isn't much that can be recovered. An
 
 There are only two models, both are using the standard synthesized codable. I've deleted some of the fields from the `MetArtifact` for simplicity sake.
 
-** Of note here is that the `primaryImageSmall` field is a URL. And while I'm always passing the `hasImages' option as `true`, there are times it does not return a URL. This is a case where a failure happens silently. But we can't display it, so my option was to skip those items (which is what the failure does) or change it to a String, and in the `MetArtifactView` have it convert it to a URL. If it was unable to, then I could put in an "image missing" image instead. **
+** Of note here is that the `primaryImageSmall` field is a URL. And while I'm always passing the `hasImages` option as `true`, there are times it does not return a URL. This is a case where a failure happens silently. But we can't display it, so my option was to skip those items (which is what the failure does) or change it to a String, and in the `MetArtifactView` have it convert it to a URL. If it was unable to, then I could put in an "image missing" image instead. **
 
 ### Views
 
