@@ -77,7 +77,14 @@ struct MainView: View {
     var viewModel = MainViewModel()
     @State var searchString = ""
     @State var sortOrder: Sorting = .forward
-
+    var disabled: Bool {
+        switch viewModel.status {
+        case .loading:
+            return false
+        default:
+            return true
+        }
+    }
     @ViewBuilder
     func ProgressCircle(percentage: Double) -> some View {
         ZStack {
@@ -103,11 +110,13 @@ struct MainView: View {
                 HStack {
                     switch viewModel.status {
                     case .empty:
-                        Text("No results")
+                        Text("Your search turned up no results")
+                            .font(.largeTitle)
                     case .loaded:
                         MetDataView(viewModel: viewModel)
                     case .noSearch:
-                        Text("You've not done a search yet")
+                        Text("To start a search type a term in the search field and hit return.")
+                            .font(.largeTitle)
                     case .loading(let percentage):
                         ProgressCircle(percentage: percentage)
                     }
@@ -123,23 +132,27 @@ struct MainView: View {
                                 Text(sort.string)
                             }
                         }
-                        Button("Stop") {
-                            viewModel.killFetch()
-                        }
                     }
                     .searchable(text: $searchString,
                                 placement: .toolbar,
                                 prompt: "Search for Artifact") {
-                    }
-
+                    }.disabled(!disabled)
                 }
-
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        viewModel.killFetch()
+                    } label: {
+                        Label("Stop", systemImage: "stop.fill")
+                            .foregroundStyle(disabled ? Color.gray : Color.red)
+                            .labelStyle(.titleAndIcon)
+                    }
+                    .disabled(disabled)
+                }
             }
             .onChange(of: sortOrder) {
                 viewModel.sort(order: sortOrder)
             }
             .onSubmit(of: .search) {
-                print("new searchstring = \(searchString)")
                 viewModel.updateViews(queryString: searchString)
             }
             .navigationTitle("Met Browser")

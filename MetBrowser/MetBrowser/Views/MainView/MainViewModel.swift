@@ -120,6 +120,7 @@ class MainViewModel {
         myTask?.cancel()
         metObjects = []
         status = .noSearch
+        myTask = nil 
     }
 
     @MainActor
