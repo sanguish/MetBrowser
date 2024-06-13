@@ -11,11 +11,14 @@ import Foundation
 class MainViewModel {
     var metObjects: [MetObject] = []
     var status: Status
-    var sortOrder: Int
+    var loadedAmount: Double = 0
 
     @MainActor
     func performQuery(queryString: String) {
+        var localMetObjects: [MetObject] = []
         Task {
+            status = .loading(0.0)
+            loadedAmount = 0.0
             let metObjectsCollection = await self.getQueries(queryString: queryString)
             if let metObjectsCollection,
                metObjectsCollection.total > 0 {
@@ -24,23 +27,37 @@ class MainViewModel {
                     let metObject = await getObject(objectID: objectID)
                     if let metObject,
                        metObject.classification != "" {
-                        metObjects.append(metObject)
+                        localMetObjects.append(metObject)
                         index = index + 1
+                        status = .loading(Double(index) / 80.0)
+                        loadedAmount = (Double(index) / 80.0)
                         if index > 79 { break }
                     }
                 }
             }
 
-            metObjects.sort {
-                $0.metadataDate < $1.metadataDate
-
-            }
+            metObjects = localMetObjects
+            sort()
             if metObjectsCollection?.total == 0 {
                 status = .empty
+            } else {
+                status = .loaded
             }
         }
     }
 
+    func sort(order: Sorting = .forward) {
+        if order == .forward {
+            metObjects.sort {
+                $0.objectBeginDate < $1.objectBeginDate
+            }
+        } else {
+            metObjects.sort {
+                $0.objectBeginDate > $1.objectBeginDate
+            }
+
+        }
+    }
     func getQueries(queryString: String) async -> MetObjectsCollection? {
         do {
             let requestType: EndpointRequestType = .query(queryString: queryString)
@@ -48,7 +65,6 @@ class MainViewModel {
                                                                                   endpointRequest: requestType)
             return queryObjects
         } catch let error as NSError {
-            status = .error
             debugPrint("Provide proper user feedback \(error.localizedDescription)")
         }
         return nil
@@ -75,7 +91,5 @@ class MainViewModel {
 
     init() {
         status = .noSearch
-        sortOrder = 1
-
     }
 }

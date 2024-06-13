@@ -7,25 +7,9 @@
 
 import Foundation
 
-enum Status {
-    case error
-    case loading
+enum Status: Equatable {
+    case loading(Double)
     case empty
-    case noSearch
     case loaded
-
-    var message: String {
-        return switch self {
-        case .error:
-            "Error"
-        case .loaded:
-            "Loaded"
-        case .loading:
-            "Loading"
-        case .empty:
-            "No values found"
-        case .noSearch:
-            "Begin Search"
-        }
-    }
+    case noSearch
 }

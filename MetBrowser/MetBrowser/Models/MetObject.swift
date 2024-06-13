@@ -25,7 +25,7 @@ class MetObject: Codable, Identifiable {
     let classification: String
     let medium, creditLine, city, state: String
     let country, region, repository: String
-    let metadataDate: Date
+    let metadataDate: String
 
     enum CodingKeys: String, CodingKey {
         case id = "objectID"
