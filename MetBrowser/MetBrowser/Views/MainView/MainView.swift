@@ -1,15 +1,16 @@
 import SwiftUI
 
-private struct MetObjectView: View {
-    private var metObject: MetObject
+/// The `MetArtifactView` provides the view that displays an individiual artifact.
+private struct MetArtifactView: View {
+    private var metArtifact: MetArtifact
 
-    init(metObject: MetObject) {
-        self.metObject = metObject
+    init(metObject: MetArtifact) {
+        self.metArtifact = metObject
     }
 
     var body: some View {
         VStack {
-            AsyncImage(url: metObject.primaryImageSmall) { phase in
+            AsyncImage(url: metArtifact.primaryImageSmall) { phase in
                 if let image = phase.image {
                     image
                         .resizable()
@@ -36,10 +37,10 @@ private struct MetObjectView: View {
                         .padding(16)
                 }
             }
-            Text(metObject.title)
+            Text(metArtifact.title)
                 .font(.headline)
-            Text("\(metObject.classification)")
-            Text("Circa: \(metObject.objectBeginDate)")
+            Text("\(metArtifact.classification)")
+            Text("Circa: \(metArtifact.objectBeginDate)")
         }
     }
 }
@@ -60,8 +61,8 @@ struct MetDataView: View {
                         .offset(y: -20)
 
                     VStack {
-                        ForEach(viewModel.metObjects) { metObject in
-                            MetObjectView(metObject: metObject)
+                        ForEach(viewModel.metArtifacts) { metObject in
+                            MetArtifactView(metObject: metObject)
                         }
                         .scrollIndicators(.hidden)
                     }
@@ -78,6 +79,14 @@ struct MainView: View {
     @State var searchString = ""
     @State var sortOrder: Sorting = .forward
 
+    var disabled: Bool {
+        switch viewModel.status {
+        case .loading:
+            return false
+        default:
+            return true
+        }
+    }
     @ViewBuilder
     func ProgressCircle(percentage: Double) -> some View {
         ZStack {
@@ -103,11 +112,13 @@ struct MainView: View {
                 HStack {
                     switch viewModel.status {
                     case .empty:
-                        Text("No results")
+                        Text("Your search turned up no results")
+                            .font(.largeTitle)
                     case .loaded:
                         MetDataView(viewModel: viewModel)
                     case .noSearch:
-                        Text("You've not done a search yet")
+                        Text("To start a search type a term in the search field and hit return.")
+                            .font(.largeTitle)
                     case .loading(let percentage):
                         ProgressCircle(percentage: percentage)
                     }
@@ -127,16 +138,23 @@ struct MainView: View {
                     .searchable(text: $searchString,
                                 placement: .toolbar,
                                 prompt: "Search for Artifact") {
-                    }
-
+                    }.disabled(!disabled)
                 }
-
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        viewModel.killFetch()
+                    } label: {
+                        Label("Stop", systemImage: "stop.fill")
+                            .foregroundStyle(disabled ? Color.gray : Color.red)
+                            .labelStyle(.titleAndIcon)
+                    }
+                    .disabled(disabled)
+                }
             }
             .onChange(of: sortOrder) {
                 viewModel.sort(order: sortOrder)
             }
             .onSubmit(of: .search) {
-                print("new searchstring = \(searchString)")
                 viewModel.updateViews(queryString: searchString)
             }
             .navigationTitle("Met Browser")
