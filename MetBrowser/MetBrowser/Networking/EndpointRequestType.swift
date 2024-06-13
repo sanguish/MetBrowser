@@ -16,6 +16,7 @@ enum EndpointRequestType {
 
         let headers = [
             "Content-Type": "application/json",
+            "Content-Length": "0",
         ]
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
@@ -32,6 +33,7 @@ enum EndpointRequestType {
         }
         urlComponents.queryItems = queryItemsArray
         var request = URLRequest(url: urlComponents.url!)
+        print(request.url?.absoluteString as Any)
         request.allHTTPHeaderFields = headers
         request.httpMethod = "GET"
         return request
