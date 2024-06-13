@@ -85,6 +85,7 @@ struct MainView: View {
                                 Text(sort.string)
                             }
                         }
+
                     }
                     .searchable(text: $searchString,
                                 placement: .toolbar,
@@ -100,6 +101,7 @@ struct MainView: View {
                             .labelStyle(.titleAndIcon)
                     }
                     .disabled(disabled)
+
                 }
             }
             .onChange(of: sortOrder) {
