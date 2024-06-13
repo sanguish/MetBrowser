@@ -123,6 +123,9 @@ struct MainView: View {
                                 Text(sort.string)
                             }
                         }
+                        Button("Stop") {
+                            viewModel.killFetch()
+                        }
                     }
                     .searchable(text: $searchString,
                                 placement: .toolbar,

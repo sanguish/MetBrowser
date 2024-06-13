@@ -11,6 +11,7 @@ import Foundation
 class MainViewModel {
     var metObjects: [MetObject] = []
     var status: Status
+    var myTask: Task<Void, Never>?
 
     var globalSuccessfulObjects: Int = 0
 
@@ -46,24 +47,32 @@ class MainViewModel {
 
     func performTaskQuery(queryString: String) async {
         globalSuccessfulObjects = 0
-
         metObjects = await withTaskGroup(of: Optional<MetObject>.self, returning: [MetObject].self) { taskGroup in
             let metObjectsCollection = await getQueries(queryString: queryString)
             if let metObjectsCollection {
-                for objectID in metObjectsCollection.objectIDs {
+                for objectID in metObjectsCollection.objectIDs { 
                     taskGroup.addTask { await self.getObject(objectID: objectID)}
                     if globalSuccessfulObjects == 80 {
                         break
                     }
                 }
             }
+
             var metObjects: [MetObject] = []
+            var i = 0
             for await result in taskGroup {
                 if let result {
+                    status = .loading(Double(i) / 100 )
                     metObjects.append(result)
+                    i = i + 1
                 }
             }
-            status = .loaded
+            sort()
+            if metObjectsCollection?.total == 0 {
+                status = .empty
+            } else {
+                status = .loaded
+            }
             return metObjects
         }
     }
@@ -86,8 +95,7 @@ class MainViewModel {
             let queryObjects = try await EndpointRequest().downloadAsyncAndDecode(MetObjectsCollection.self,
                                                                                   endpointRequest: requestType)
             return queryObjects
-        } catch let error as NSError {
-            debugPrint("Provide proper user feedback \(error.localizedDescription)")
+        } catch {
         }
         return nil
     }
@@ -102,19 +110,28 @@ class MainViewModel {
                 globalSuccessfulObjects = globalSuccessfulObjects + 1
                 return metObject
             }
-        } catch let error as NSError {
-            debugPrint("objectid = \(objectID)")
-            debugPrint("Provide proper user feedback \(error.localizedDescription)")
+        } catch {
         }
         return nil
     }
 
     @MainActor
+    func killFetch() {
+        myTask?.cancel()
+        metObjects = []
+        status = .noSearch
+    }
+
+    @MainActor
     func updateViews(queryString: String) {
         metObjects = []
-        Task {
+        myTask = Task {
             await performTaskQuery(queryString: queryString)
         }
+    }
+    @MainActor func updateViewsSlow(queryString: String) {
+        metObjects = []
+        performQuery(queryString: queryString)
     }
 
     init() {
