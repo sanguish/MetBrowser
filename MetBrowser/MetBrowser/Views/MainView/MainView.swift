@@ -78,6 +78,25 @@ struct MainView: View {
     @State var searchString = ""
     @State var sortOrder: Sorting = .forward
 
+    @ViewBuilder
+    func ProgressCircle(percentage: Double) -> some View {
+        ZStack {
+            Circle()
+                .stroke(Color.blue.opacity(0.25), style: StrokeStyle(lineWidth: 16))
+            Circle()
+                .trim(from: 0, to: percentage)
+                .stroke(Color.blue, style: StrokeStyle(lineWidth: 16, lineCap: .round))
+                .foregroundColor(.green)
+                .rotationEffect(.degrees(-90))
+            VStack {
+                Text("\(Int(percentage * 100))%")
+                    .font(.title3)
+                    .animation(.none)
+            }
+        }
+        .frame(width: 200, height: 200)
+
+    }
     var body: some View {
         GeometryReader { geometryProxy in
             VStack {
@@ -90,7 +109,7 @@ struct MainView: View {
                     case .noSearch:
                         Text("You've not done a search yet")
                     case .loading(let percentage):
-                        Text("\(percentage * 100)%")
+                        ProgressCircle(percentage: percentage)
                     }
                 }
             }.frame(width: geometryProxy.size.width, height: geometryProxy.size.height)
