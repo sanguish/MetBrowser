@@ -1,2 +1,0 @@
-# MetBrowser
-Met Database Browser

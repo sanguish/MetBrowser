@@ -1,50 +1,5 @@
 import SwiftUI
 
-/// The `MetArtifactView` provides the view that displays an individiual artifact.
-private struct MetArtifactView: View {
-    private var metArtifact: MetArtifact
-
-    init(metObject: MetArtifact) {
-        self.metArtifact = metObject
-    }
-
-    var body: some View {
-        VStack {
-            AsyncImage(url: metArtifact.primaryImageSmall) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 200)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .clipped()
-                        .shadow(radius: 8)
-                        .padding(16)
-
-                } else if phase.error != nil {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .resizable()
-                        .tint(Color.gray)
-                        .frame(width: 200, height: 200)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .clipped()
-                        .shadow(radius: 8)
-                        .padding(16)
-
-                } else {
-                    ProgressView()
-                        .frame(width: 200, height: 200)
-                        .padding(16)
-                }
-            }
-            Text(metArtifact.title)
-                .font(.headline)
-            Text("\(metArtifact.classification)")
-            Text("Circa: \(metArtifact.objectBeginDate)")
-        }
-    }
-}
-
 struct MetDataView: View {
     private var viewModel: MainViewModel
 
@@ -54,26 +9,22 @@ struct MetDataView: View {
 
     var body: some View {
         GeometryReader { geometryProxy in
-            VStack {
-                ScrollView(.vertical) {
-                    Spacer()
-                        .frame(width: geometryProxy.size.width - 16, height: 20)
-                        .offset(y: -20)
-
-                    VStack {
-                        ForEach(viewModel.metArtifacts) { metObject in
-                            MetArtifactView(metObject: metObject)
-                        }
-                        .scrollIndicators(.hidden)
+            ScrollView(.vertical) {
+                LazyVStack(alignment: .leading) {
+                    ForEach(viewModel.metArtifacts) { metObject in
+                        MetArtifactView(metArtifact: metObject)
                     }
+                    Text("\(viewModel.metArtifacts.count)")
                 }
-                .frame(width: geometryProxy.size.width)
-            }
-
+                .scrollIndicators(.hidden)
+            } 
+            .frame(width: geometryProxy.size.width)
             .navigationTitle("Met Browser")
         }
     }
 }
+
+/// This is the main view of the window. It shows the various unloaded states, setsup the toolbars, and shows the loaded state.
 struct MainView: View {
     var viewModel = MainViewModel()
     @State var searchString = ""
@@ -134,6 +85,7 @@ struct MainView: View {
                                 Text(sort.string)
                             }
                         }
+
                     }
                     .searchable(text: $searchString,
                                 placement: .toolbar,
@@ -149,6 +101,7 @@ struct MainView: View {
                             .labelStyle(.titleAndIcon)
                     }
                     .disabled(disabled)
+
                 }
             }
             .onChange(of: sortOrder) {
