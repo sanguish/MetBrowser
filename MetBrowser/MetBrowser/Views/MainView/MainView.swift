@@ -1,50 +1,5 @@
 import SwiftUI
 
-/// The `MetArtifactView` provides the view that displays an individiual artifact.
-private struct MetArtifactView: View {
-    private var metArtifact: MetArtifact
-
-    init(metObject: MetArtifact) {
-        self.metArtifact = metObject
-    }
-
-    var body: some View {
-        VStack {
-            AsyncImage(url: metArtifact.primaryImageSmall) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 200)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .clipped()
-                        .shadow(radius: 8)
-                        .padding(16)
-
-                } else if phase.error != nil {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .resizable()
-                        .tint(Color.gray)
-                        .frame(width: 200, height: 200)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                        .clipped()
-                        .shadow(radius: 8)
-                        .padding(16)
-
-                } else {
-                    ProgressView()
-                        .frame(width: 200, height: 200)
-                        .padding(16)
-                }
-            }
-            Text(metArtifact.title)
-                .font(.headline)
-            Text("\(metArtifact.classification)")
-            Text("Circa: \(metArtifact.objectBeginDate)")
-        }
-    }
-}
-
 struct MetDataView: View {
     private var viewModel: MainViewModel
 
@@ -55,10 +10,11 @@ struct MetDataView: View {
     var body: some View {
         GeometryReader { geometryProxy in
             ScrollView(.vertical) {
-                LazyVStack {
+                LazyVStack(alignment: .leading) {
                     ForEach(viewModel.metArtifacts) { metObject in
-                        MetArtifactView(metObject: metObject)
+                        MetArtifactView(metArtifact: metObject)
                     }
+                    Text("\(viewModel.metArtifacts.count)")
                 }
                 .scrollIndicators(.hidden)
             } 
