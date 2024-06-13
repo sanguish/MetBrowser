@@ -54,26 +54,21 @@ struct MetDataView: View {
 
     var body: some View {
         GeometryReader { geometryProxy in
-            VStack {
-                ScrollView(.vertical) {
-                    Spacer()
-                        .frame(width: geometryProxy.size.width - 16, height: 20)
-                        .offset(y: -20)
-
-                    VStack {
-                        ForEach(viewModel.metArtifacts) { metObject in
-                            MetArtifactView(metObject: metObject)
-                        }
-                        .scrollIndicators(.hidden)
+            ScrollView(.vertical) {
+                LazyVStack {
+                    ForEach(viewModel.metArtifacts) { metObject in
+                        MetArtifactView(metObject: metObject)
                     }
                 }
-                .frame(width: geometryProxy.size.width)
-            }
-
+                .scrollIndicators(.hidden)
+            } 
+            .frame(width: geometryProxy.size.width)
             .navigationTitle("Met Browser")
         }
     }
 }
+
+/// This is the main view of the window. It shows the various unloaded states, setsup the toolbars, and shows the loaded state.
 struct MainView: View {
     var viewModel = MainViewModel()
     @State var searchString = ""
