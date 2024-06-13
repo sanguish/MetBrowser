@@ -18,7 +18,6 @@
 		C8E0D3692C196BB900AC4BD0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3662C196BB900AC4BD0 /* MainView.swift */; };
 		C8E0D36A2C196BB900AC4BD0 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E0D3672C196BB900AC4BD0 /* MainViewModel.swift */; };
 		C8F5D7C72C1AB53E005C960D /* Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F5D7C62C1AB53E005C960D /* Sorting.swift */; };
-		C8F5D7CB2C1AC13C005C960D /* LargeCircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F5D7CA2C1AC13C005C960D /* LargeCircleProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +35,6 @@
 		C8E0D3662C196BB900AC4BD0 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C8E0D3672C196BB900AC4BD0 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		C8F5D7C62C1AB53E005C960D /* Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorting.swift; sourceTree = "<group>"; };
-		C8F5D7CA2C1AC13C005C960D /* LargeCircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeCircleProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +144,6 @@
 		C8F5D7C92C1AC104005C960D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				C8F5D7CA2C1AC13C005C960D /* LargeCircleProgressView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -226,7 +223,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8E0D35C2C1968F000AC4BD0 /* EndpointRequestType.swift in Sources */,
-				C8F5D7CB2C1AC13C005C960D /* LargeCircleProgressView.swift in Sources */,
 				C8E0D3692C196BB900AC4BD0 /* MainView.swift in Sources */,
 				C8E0D35B2C1968F000AC4BD0 /* EndpointRequest.swift in Sources */,
 				C8E0D3652C196B9C00AC4BD0 /* Status.swift in Sources */,
