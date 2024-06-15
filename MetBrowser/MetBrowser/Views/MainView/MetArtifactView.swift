@@ -21,7 +21,7 @@ private struct MetArtifactImage: View {
                     .clipped()
                     .shadow(radius: 8)
                     .padding(16)
-
+                    .draggable(image)
             } else if phase.error != nil {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .resizable()
