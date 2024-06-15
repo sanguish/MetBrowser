@@ -34,7 +34,7 @@ class MainViewModel {
                 if let result {
                     status = .loading(percentage / artifactsRetrievedWithClassification)
                     localMetArtifacts.append(result)
-                    percentage+=1
+                    percentage += 1
                 }
                 sort()
             }
@@ -72,7 +72,7 @@ class MainViewModel {
                                                                                   endpointRequest: requestType)
             if metObject?.classification != "",
             let metObject {
-                artifactsRetrievedWithClassification+=1
+                artifactsRetrievedWithClassification += 1
                 return metObject
             }
         } catch {
