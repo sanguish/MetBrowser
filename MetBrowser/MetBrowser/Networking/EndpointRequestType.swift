@@ -33,7 +33,6 @@ enum EndpointRequestType {
         }
         urlComponents.queryItems = queryItemsArray
         var request = URLRequest(url: urlComponents.url!)
-        print(request.url?.absoluteString as Any)
         request.allHTTPHeaderFields = headers
         request.httpMethod = "GET"
         return request

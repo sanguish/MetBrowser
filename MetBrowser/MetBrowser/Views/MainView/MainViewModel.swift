@@ -12,41 +12,37 @@ class MainViewModel {
     @MainActor var metArtifacts: [MetArtifact] = []
     var status: Status
     var myTask: Task<Void, Never>?
-    var globalSuccessfulObjects: Int = 0
-    
+    var artifactsRetrievedWithClassification: Double = 0
+
     /// Performs the query, creating a task group that first loads a ``MetArtifactsCollection`` and then iterates over the items until 80 successful objects are returned.
     /// - Parameter queryString: The query string.
     @MainActor
     func performTaskQuery(queryString: String) async {
-        globalSuccessfulObjects = 0
+        artifactsRetrievedWithClassification = 0
         metArtifacts = await withTaskGroup(of: Optional<MetArtifact>.self, returning: [MetArtifact].self) { taskGroup in
             let metArtifactsCollection = await getQueries(queryString: queryString)
             if let metArtifactsCollection {
                 let partialArtifactsCollection = Array(metArtifactsCollection.objectIDs.prefix(80))
                 for objectID in partialArtifactsCollection {
-                    if taskGroup.isCancelled { break }
-                    taskGroup.addTask { await self.getObject(objectID: objectID)}
+                    _ = taskGroup.addTaskUnlessCancelled { await self.getObject(objectID: objectID)}
                 }
             }
+
             var localMetArtifacts: [MetArtifact] = []
-
-            if !taskGroup.isCancelled {
-                var percentage = 0
-                for await result in taskGroup {
-                    if let result {
-                        status = .loading(Double(percentage) / Double(globalSuccessfulObjects))
-                        localMetArtifacts.append(result)
-                        percentage = percentage + 1
-                    }
+            var percentage = 0.0
+            for await result in taskGroup {
+                if let result {
+                    status = .loading(percentage / artifactsRetrievedWithClassification)
+                    localMetArtifacts.append(result)
+                    percentage += 1
                 }
-
                 sort()
             }
             if localMetArtifacts.isEmpty {
-                    status = .empty
-                } else {
-                    status = .loaded
-                }
+                status = .empty
+            } else {
+                status = .loaded
+             }
             return localMetArtifacts
         }
     }
@@ -76,7 +72,7 @@ class MainViewModel {
                                                                                   endpointRequest: requestType)
             if metObject?.classification != "",
             let metObject {
-                globalSuccessfulObjects = globalSuccessfulObjects + 1
+                artifactsRetrievedWithClassification += 1
                 return metObject
             }
         } catch {
