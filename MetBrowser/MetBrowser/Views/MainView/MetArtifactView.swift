@@ -23,14 +23,18 @@ private struct MetArtifactImage: View {
                     .padding(16)
                     .draggable(image)
             } else if phase.error != nil {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .resizable()
-                    .tint(Color.gray)
-                    .frame(width: 200, height: 200)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .clipped()
-                    .shadow(radius: 8)
-                    .padding(16)
+                VStack {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .resizable()
+                        .tint(Color.gray)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .frame(width: 100)
+                        .clipped()
+                        .shadow(radius: 8)
+                    Text("Image Unavailable")
+                }
+                .frame(width: 200, height: 200)
+                .padding(16)
 
             } else {
                 ProgressView()
