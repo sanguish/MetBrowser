@@ -12,4 +12,5 @@ enum Status: Equatable {
     case empty
     case loaded
     case noSearch
+    case error(String)
 }

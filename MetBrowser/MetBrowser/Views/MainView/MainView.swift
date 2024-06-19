@@ -8,19 +8,17 @@ struct MetDataView: View {
     }
 
     var body: some View {
-        GeometryReader { geometryProxy in
-            ScrollView(.vertical) {
-                LazyVStack(alignment: .leading) {
-                    ForEach(viewModel.metArtifacts) { metObject in
-                        MetArtifactView(metArtifact: metObject)
-                    }
-                    Text("\(viewModel.metArtifacts.count)")
+        ScrollView(.vertical) {
+            LazyVStack(alignment: .leading) {
+                ForEach(viewModel.metArtifacts) { metObject in
+                    MetArtifactView(metArtifact: metObject)
                 }
-                .scrollIndicators(.hidden)
-            } 
-            .frame(width: geometryProxy.size.width)
+            }
+            .scrollIndicators(.hidden)
             .navigationTitle("Met Browser")
         }
+        .frame(maxWidth: .infinity)
+
     }
 }
 
@@ -58,60 +56,71 @@ struct MainView: View {
 
     }
     var body: some View {
-        GeometryReader { geometryProxy in
-            VStack {
-                HStack {
-                    switch viewModel.status {
-                    case .empty:
-                        Text("Your search turned up no results")
-                            .font(.largeTitle)
-                    case .loaded:
-                        MetDataView(viewModel: viewModel)
-                    case .noSearch:
-                        Text("To start a search type a term in the search field and hit return.")
-                            .font(.largeTitle)
-                    case .loading(let percentage):
-                        ProgressCircle(percentage: percentage)
-                    }
-                }
-            }.frame(width: geometryProxy.size.width, height: geometryProxy.size.height)
-
-            .toolbar {
-                ToolbarItemGroup(placement: .secondaryAction) {
-                    HStack {
-                        Text("Sort: ")
-                        Picker("Sort Order", selection: $sortOrder) {
-                            ForEach(Sorting.allCases) { sort in
-                                Text(sort.string)
-                            }
-                        }
-
-                    }
-                    .searchable(text: $searchString,
-                                placement: .toolbar,
-                                prompt: "Search for Artifact") {
-                    }.disabled(!disabled)
-                }
-                ToolbarItem(placement: .cancellationAction) {
-                    Button {
-                        viewModel.killFetch()
-                    } label: {
-                        Label("Stop", systemImage: "stop.fill")
-                            .foregroundStyle(disabled ? Color.gray : Color.red)
-                            .labelStyle(.titleAndIcon)
-                    }
-                    .disabled(disabled)
-
+        VStack {
+            switch viewModel.status {
+            case .empty:
+                Text("Your search turned up no results")
+                    .font(.largeTitle)
+            case .loaded:
+                MetDataView(viewModel: viewModel)
+            case .noSearch:
+                Text("To start a search type a term in the search field and hit return.")
+                    .font(.largeTitle)
+            case .loading(let percentage):
+                ProgressCircle(percentage: percentage)
+            case .error(let errorString):
+                VStack {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundColor(.red)
+                        .font(.largeTitle)
+                    Text("Error attempting query!")
+                        .font(.largeTitle)
+                    Text(errorString)
+                        .font(.caption)
                 }
             }
-            .onChange(of: sortOrder) {
-                viewModel.sort(order: sortOrder)
-            }
-            .onSubmit(of: .search) {
-                viewModel.updateViews(queryString: searchString)
-            }
-            .navigationTitle("Met Browser")
         }
-    }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
 
+        .toolbar {
+            ToolbarItemGroup(placement: .secondaryAction) {
+                HStack {
+                    Text("Found: \(viewModel.metArtifacts.count)")
+                        .opacity(viewModel.metArtifacts.isEmpty ? 0.0 : 1.0)
+                    Spacer()
+                        .frame(width: 16)
+                    Text("Sort: ")
+
+                    Picker("Sort Order", selection: $sortOrder) {
+                        ForEach(Sorting.allCases) { sort in
+                            Text(sort.string)
+                        }
+                    }
+
+                }
+                .searchable(text: $searchString,
+                            placement: .toolbar,
+                            prompt: "Search for Artifact") {
+                }.disabled(!disabled)
+            }
+            ToolbarItem(placement: .cancellationAction) {
+                Button {
+                    viewModel.killFetch()
+                } label: {
+                    Label("Stop", systemImage: "stop.fill")
+                        .foregroundStyle(disabled ? Color.gray : Color.red)
+                        .labelStyle(.titleAndIcon)
+                }
+                .disabled(disabled)
+
+            }
+        }
+        .onChange(of: sortOrder) {
+            viewModel.sort(order: sortOrder)
+        }
+        .onSubmit(of: .search) {
+            viewModel.updateViews(queryString: searchString)
+        }
+        .navigationTitle("Met Browser")
+    }
 }
